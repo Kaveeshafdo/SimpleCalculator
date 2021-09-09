@@ -302,6 +302,7 @@ public class Calculator extends JFrame implements ActionListener, MouseListener 
     public void actionPerformed(ActionEvent e) {
         btn = e.getSource();//b1
        String text = e.getActionCommand();//1
+        System.out.println(text);
 
         if (btn.equals(b0) || btn.equals(b1) || btn.equals(b2) || btn.equals(b3) || btn.equals(b4) || btn.equals(b5) || btn.equals(b6) || btn.equals(b7) || btn.equals(b8) || btn.equals(b9)) {
             double val = 0;
@@ -313,7 +314,7 @@ public class Calculator extends JFrame implements ActionListener, MouseListener 
             } else {
                 area.setText(text);
             }
-
+            
         } else if (e.getSource() == bclr) {
             area.setText(null);
         } else if (e.getSource() == bdel) {
@@ -322,7 +323,7 @@ public class Calculator extends JFrame implements ActionListener, MouseListener 
             for (int i = 0; i < s.length() - 1; i++) {
                 area.setText(area.getText() + s.charAt(i));
             }
-        } else if (btn.equals(bpls) || btn.equals(bmin) || btn.equals(bmul) || btn.equals(bdiv)) {
+        } else if (btn.equals(bpls) || btn.equals(bmin) || btn.equals(bmul) || btn.equals(bdiv) || btn.equals(brt) || btn.equals(bsqrt)) {
             op = text;
             num1 = Double.parseDouble(area.getText().trim());
             area.setText("0");
@@ -344,152 +345,25 @@ public class Calculator extends JFrame implements ActionListener, MouseListener 
                 total = num1 / num2;
 
             }
+             else if (op.equals("x" + "\u02B8")) {
+                total = Math.pow(num1, num2);
+
+            }
+            else if (op.equals("y" + "\u221A" + "x")) {
+               double sqrt = Math.sqrt(num2);
+               total = num1 * sqrt;
+            }
             area.setText(""+ total);
 
         }
+        else if (e.getSource() == bdot) {
+            String a = area.getText();
+            if (a.length() > 0) {
+                area.append(".");
+            }
+        }
+    }  
 
-    }
-
-//            if (val != 0.0) {
-    //                area.setText(area.getText().trim() + text);
-    //            } else {
-    //                area.setText(text);
-    //            }
-    //        }
-    //        if (e.getSource() == b0) {
-    //            area.setText(area.getText().trim() + "0");
-    //        } else if (e.getSource() == b1) {
-    //            area.setText(area.getText().trim() + "1");
-    //        } else if (e.getSource() == b2) {
-    //            area.setText(area.getText().trim() + "2");
-    //        } else if (e.getSource() == b3) {
-    //            area.setText(area.getText().trim() + "3");
-    //        } else if (e.getSource() == b4) {
-    //            area.setText(area.getText().trim() + "4");
-    //        } else if (e.getSource() == b5) {
-    //            area.setText(area.getText().trim() + "5");
-    //        } else if (e.getSource() == b6) {
-    //            area.setText(area.getText().trim() + "6");
-    //        } else if (e.getSource() == b7) {
-    //            area.setText(area.getText().trim() + "7");
-    //        } else if (e.getSource() == b8) {
-    //            area.setText(area.getText().trim() + "8");
-    //        } else if (e.getSource() == b9) {
-    //            area.setText(area.getText().trim() + "9");
-//        else if (e.getSource() == bpls) {
-//            String a = area.getText();
-//            if (a.length() > 0) {
-//                area.append("+");
-//            }
-//        } else if (e.getSource() == bmin) {
-//            area.append("-");
-//        } else if (e.getSource() == bmul) {
-//            String a = area.getText();
-//            if (a.length() > 0) {
-//                area.append("\u00D7");
-//            }
-//        } else if (e.getSource() == bdiv) {
-//            String a = area.getText();
-//            if (a.length() > 0) {
-//                area.append("/");
-//            }
-//        } else if (e.getSource() == bdot) {
-//            String a = area.getText();
-//            if (a.length() > 0) {
-//                area.append(".");
-//            }
-//        } else if (e.getSource() == bsqrt) {
-//            area.append("\u221A");
-//        } else if (e.getSource() == brt) {
-//            area.append("^");
-//        } else if (e.getSource() == beq) {
-//            if (area.getText().contains("+")) {
-//                statement = area.getText().split("\\+");
-//
-//                strnum1 = statement[0];
-//                strnum2 = statement[1];
-//
-//                num1 = Float.parseFloat(strnum1);
-//                num2 = Float.parseFloat(strnum2);
-//
-//                total = num1 + num2;
-//
-//                strtot = Float.toString(total);
-//                area.setText(strtot);
-//            }
-//            if (area.getText().contains("-")) {
-//                statement = area.getText().split("\\-");
-//
-//                strnum1 = statement[0];
-//                strnum2 = statement[1];
-//
-//                num1 = Float.parseFloat(strnum1);
-//                num2 = Float.parseFloat(strnum2);
-//
-//                total = num1 - num2;
-//
-//                strtot = Float.toString(total);
-//                area.setText(strtot);
-//            }
-//            if (area.getText().contains("\u00D7")) {
-//                statement = area.getText().split("\\\u00D7");
-//
-//                strnum1 = statement[0];
-//                strnum2 = statement[1];
-//
-//                num1 = Float.parseFloat(strnum1);
-//                num2 = Float.parseFloat(strnum2);
-//
-//                total = num1 * num2;
-//
-//                strtot = Float.toString(total);
-//                area.setText(strtot);
-//            }
-//            if (area.getText().contains("/")) {
-//                statement = area.getText().split("\\/");
-//
-//                strnum1 = statement[0];
-//                strnum2 = statement[1];
-//
-//                num1 = Float.parseFloat(strnum1);
-//                num2 = Float.parseFloat(strnum2);
-//
-//                total = num1 / num2;
-//
-//                strtot = Float.toString(total);
-//                area.setText(strtot);
-//            }
-//            if (area.getText().contains("\u221A")) {
-//                statement = area.getText().split("\\\u221A");
-//
-//                strnum1 = statement[0];
-//                strnum2 = statement[1];
-//
-//                double str1 = Double.parseDouble(strnum1);
-//                double str2 = Double.parseDouble(strnum2);
-//
-//                double sqrt = Math.sqrt(str2);
-//                double tot = str1 * sqrt;
-//                strtot = Double.toString(tot);
-//
-//                area.setText(strtot);
-//            }
-//            if (area.getText().contains("^")) {
-//                statement = area.getText().split("\\^");
-//
-//                strnum1 = statement[0];
-//                strnum2 = statement[1];
-//
-//                double str1 = Double.parseDouble(strnum1);
-//                double str2 = Double.parseDouble(strnum2);
-//
-//                double power = Math.pow(str1, str2);
-//
-//                strtot = Double.toString(power);
-//
-//                area.setText(strtot);
-//            }
-//        }
     @Override
     public void mouseClicked(MouseEvent e) {
 
