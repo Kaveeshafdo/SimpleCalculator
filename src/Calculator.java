@@ -302,7 +302,7 @@ public class Calculator extends JFrame implements ActionListener, MouseListener 
     public void actionPerformed(ActionEvent e) {
         btn = e.getSource();//b1
        String text = e.getActionCommand();//1
-        System.out.println(text);
+//        System.out.println(text);
 
         if (btn.equals(b0) || btn.equals(b1) || btn.equals(b2) || btn.equals(b3) || btn.equals(b4) || btn.equals(b5) || btn.equals(b6) || btn.equals(b7) || btn.equals(b8) || btn.equals(b9)) {
             double val = 0;
